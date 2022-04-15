@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>online learning on Chris Jung</title>
+    <link>https://www.cis.upenn.edu/~chrjung/blog/tags/online-learning/</link>
+    <description>Recent content in online learning on Chris Jung</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Dec 2019 13:50:31 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.cis.upenn.edu/~chrjung/blog/tags/online-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Relax and Randomize: No Regret</title>
+      <link>https://www.cis.upenn.edu/~chrjung/blog/relax-and-randomize/</link>
+      <pubDate>Fri, 06 Dec 2019 13:50:31 -0500</pubDate>
+      
+      <guid>https://www.cis.upenn.edu/~chrjung/blog/relax-and-randomize/</guid>
+      <description>Ever since I started grad school, I have been fascinated by the idea of no-regret algorithms. It is truly remarkable that one can make sequential decisions with very little or no assumptions at all about the future and still manage to do almost as well as if you have known the future in advance.
+
+&#34;when I finally understood what no-regret guarantees entailed&#34;  So, I&amp;rsquo;ve been spending much time trying to develop some intuition behind these algorithms in general by reading blogs, lecture notes, and some papers.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,91 @@
+body {
+    font-family: 'Fjalla One', sans-serif;
+    background-color: #fbfbf9;
+    color: #61656e;
+}
+
+.soli-deo-gloria{
+    float: left;
+    padding-left: 208px;
+}
+
+#name{
+    color: #4f5b62;
+    font-weight: bold;
+}
+
+#profilePic {
+    width: 580px;
+}
+
+.navbar-container{
+    background-color: #fbfbf9;
+    z-index: 10;
+    position: fixed;
+    top:0px;
+    left:0px;
+    height:43px; 
+    width:100%;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.navbar{
+    text-align: right;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.navbar a{
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.nav-bar-menu{
+    padding-right: 80px;
+}
+
+.section{
+    margin-left: 200px;
+    padding-top: 45px;
+    width: 600px;
+    padding-bottom: 30px;
+}
+
+.description{
+    margin-top: 10px;
+}
+
+.description a{
+    text-decoration: none;
+}
+
+.subsection-title{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    color: #373838;
+}
+
+#research{
+    padding-top: 0px;
+}
+
+#research div{
+    width: 600px;
+}
+
+#research a{
+    text-decoration: none;
+}
+
+#research ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+#research li{
+    margin-bottom: 20px;
+}
+

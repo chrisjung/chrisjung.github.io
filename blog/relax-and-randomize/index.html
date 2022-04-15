@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <meta name="generator" content="Hugo 0.58.3" />
+
+  
+  <meta name="description" content="Some description">
+  
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.cis.upenn.edu/~chrjung/blog/apple-touch-icon.png">
+
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.cis.upenn.edu/~chrjung/blog/favicon-32x32.png">
+
+  
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.cis.upenn.edu/~chrjung/blog/favicon-16x16.png">
+
+  
+  <link rel="manifest" href="https://www.cis.upenn.edu/~chrjung/blog/site.webmanifest">
+
+  
+  <link rel="mask-icon" href="https://www.cis.upenn.edu/~chrjung/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+  <meta name="msapplication-TileColor" content="#da532c">
+
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <link rel="stylesheet" href="https://www.cis.upenn.edu/~chrjung/blog/css/bootstrap.min.css" />
+
+  
+  <title>Relax and Randomize: No Regret | Chris Jung</title>
+  
+
+  <style>
+body {
+  min-width: 300px;
+}
+
+.custom-navbar {
+  margin-bottom: 1em;
+  height: 60px;
+}
+
+.custom-navbar a {
+  display: inline-block; 
+  padding: 18px 0;
+  margin-right: 1em; 
+  font-weight: bold; 
+}
+
+.custom-navbar a:hover,
+.custom-navbar a:focus {
+  text-decoration: none; 
+}
+
+@media print {
+  .custom-navbar {
+    display: none;
+  }
+}
+
+article {
+  padding-bottom: 1em;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+body {
+  background-color: #fff;
+}
+
+
+
+body {
+  color: #212529;
+}
+
+
+
+a {
+  color: #007bff;
+}
+
+
+
+a:hover,
+a:focus {
+  color: #0056b3;
+}
+
+
+
+.custom-navbar {
+  background-color: #212529;
+}
+
+
+
+.custom-navbar a {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+
+
+.custom-navbar a:hover,
+.custom-navbar a:focus {
+  color: rgba(255, 255, 255, 1);
+}
+
+
+
+.container {
+  max-width: 800px;
+}
+
+
+
+pre {
+  display: block;
+  padding: 9.5px;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  white-space: pre-wrap;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+code {
+  padding: 2px 4px;
+  color: inherit; 
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: .9em;
+}
+
+
+
+blockquote,
+.blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 1em;
+  border-left: 5px solid #6c757d;
+}
+
+</style>
+</head>
+
+<body>
+  <nav class="custom-navbar">
+  <div class="container">
+    
+    <a href="https://www.cis.upenn.edu/~chrjung/blog/">Posts</a>
+    
+    <a href="https://www.cis.upenn.edu/~chrjung/blog/tags/">Tags</a>
+    
+    <a href="https://www.cis.upenn.edu/~chrjung/blog/about/">About</a>
+    
+  </div>
+</nav>
+  
+  <div class="container">
+    <article>
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+    onload="
+    renderMathInElement(
+          document.body,
+          {
+              delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+                  // {left: '\\(', right: '\\)', display: false}
+              ],
+              macros: {
+                '\\nl': '\\\\',
+                '\\RR': '\\mathbb{R}'
+              },
+              throwOnError: true
+          }
+      );
+      "></script>
+
+
+
+
+
+
+<h1>Relax and Randomize: No Regret</h1>
+<p>
+  <small class="text-secondary">
+  
+  
+  Dec 6, 2019
+  </small>
+  
+
+<small><code><a href="https://www.cis.upenn.edu/~chrjung/blog/tags/online-learning">online learning</a></code></small>
+
+</p>
+
+
+<p>Ever since I started grad school, I have been fascinated by the idea of no-regret algorithms. It is truly remarkable that one can make sequential decisions with very little or no assumptions at all about the future and still manage to do almost as well as if you have known the future in advance.</p>
+
+<p></br></p>
+
+<figure style="display: block; margin-left: auto;margin-right: auto; width: 30%;">
+    <img src="../img/relax-and-randomize/mind-blown.png">
+    <figcaption style="color: grey"> "when I finally understood what no-regret guarantees entailed"</figcaption>
+</figure>
+
+<p>So, I&rsquo;ve been spending much time trying to develop some intuition behind these algorithms in general by reading blogs, lecture notes, and some papers. Here&rsquo;s a short list of some resources that I&rsquo;ve used.</p>
+
+<ul>
+<li><p><a href="https://parameterfree.com/">Francesco Orabona&rsquo;s blog</a></p></li>
+
+<li><p><a href="https://arxiv.org/pdf/1904.07272.pdf">Aleksandrs Slivkins&rsquo;s textbook</a></p></li>
+
+<li><p><a href="https://tor-lattimore.com/downloads/book/book.pdf">Tor Lattimore and Csaba Szepesvari&rsquo;s textbook</a></p></li>
+
+<li><p><a href="https://www.youtube.com/watch?v=5DIZCxcfeWU">Sebastian Bubeck&rsquo;s lecture series</a></p></li>
+
+<li><p><a href="http://sbubeck.com/SurveyBCB12.pdf">Sebastian Bubeck and Nicolo Cesa-Bianchi&rsquo;s survey</a></p></li>
+
+<li><p><a href="https://haipeng-luo.net/courses/CSCI699/index.html">Haipeng Luo&rsquo;s lecture notes</a></p></li>
+</ul>
+
+<p>And recently, for one of my projects, I had to understand this <a href="https://arxiv.org/abs/1602.02196">paper</a>: &ldquo;BISTRO: An Efficient Relaxation-Based Method for Contextual Bandits&rdquo; by Rakhlin and Sridharan. While reading the paper, I personally had a hard time internalizing the intuition, and as often is the case, it left me wondering &ldquo;How did the authors arrive at this approach? With such complex machineries in the paper, they probably did&rsquo;t invent the idea out of thin air as an one-off approach for the problem&hellip;.right?&rdquo; Luckily, following a thread of references, I&rsquo;ve found that there has been an extensive line of papers prior to this paper, and I have been quite struck by the line of thinking there. I&rsquo;m still grappling with the connections between each work, but I&rsquo;m hoping that as I try to describe the line of thinking from the beginning to the end in this blog instead of going backwards (which is what I have been doing so far), I&rsquo;ll finally be able to digest the contents of BISTRO ;)</p>
+
+<p><br></p>
+
+<h2 id="0-short-proverbial-summary">0. Short Proverbial Summary</h2>
+
+<p>In order to be future-proof against the worst case scenario, one can just act according to a random future scenario. In other words, to prepare for the random is to prepare for the worst. So, <a href="http://www.mit.edu/~rakhlin/papers/RakShaSri12nips.pdf">&ldquo;Relax and Randomize.&rdquo;</a></p>
+
+<figure style="display: block; margin-left: auto;margin-right: auto; width: 30%;">
+    <img src="../img/relax-and-randomize/worst-case-scenario.jpg">
+    <figcaption style="color: grey"> "or you can just buy this <a href="https://www.amazon.com/Worst-Case-Scenario-Survival-Handbook-Situations/dp/1452172188">book</a>"</figcaption>
+</figure>
+
+<p><br></p>
+
+<h2 id="1-setting">1. Setting</h2>
+
+<p>The setting can be described as a repeated interaction between the learner (Player) and the adversary (Nature) over $T$ rounds. In each round $t \in [T]$, some context $x_t \in \mathcal{X}$ arrives from some distribution $\mathcal{D}$. The learner chooses some mixed strategy $p_t \in \Delta(K)$, and the adversary chooses its strategy $q_t \in \mathcal{Z}$, where $\mathcal{Z} = [0,1]^K$. The learner plays $y_t \in [K]$ that is randomly sampled from $p_t$ and incurs loss $\langle e_{y_t}, q_t \rangle$, where $e_i$ is the $i$th standard basis vector. In the full information case, the learner sees the strategy played by the adversary, which is $q_t$. In the bandit case, the learner only gets to see the loss incurred from playing $y_t$, which is $\langle e_{y_t}, q_t \rangle$. We&rsquo;ll only focus on the full-information case, but the usual importance weighting works.</p>
+
+<p>The learner&rsquo;s overall expected loss over $T$ rounds is $\sum_{t=1}^T E_{y \sim p_t}[ \langle e_{y_t}, q_t \rangle ] = \sum_{t=1}^T \lang p_t, q_t\rang$. The goal of the learner is to minimize the overall expected loss where as the adversary is trying to maximize the learner&rsquo;s overall loss.</p>
+
+<p>Because of the absence of assumptions on $q_{1:T}$, we can&rsquo;t simply look at the above value to measure the quality of our strategy $p_{1:T}$, where $q_{1:T} = [q_1, \dots, q_T]$ and similarly, $p_{1:T} = [p_1, \dots, p_T]$. Instead, in order to measure how good the learner&rsquo;s overall strategy is, we&rsquo;ll look at a value called <em>regret</em>. Essentially, the regret measures how much less loss the learner could have suffered by playing some other fixed strategy $f \in \mathcal{F}$ for all rounds. Assume that $\mathcal{F}: \mathcal{X} \to [K]$ is compact and convex. For any $f(x) \in [K]$, we&rsquo;ll abuse the notation and identify its value with its standard basis vector $e_{f(x)}$. Therefore, regret can be written as</p>
+
+<p>$$
+Regret(\mathcal{F}) = \sum_{t=1}^T \lang p_t, q_t\rang - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \lang f(x_t), q_t \rang.
+$$</p>
+
+<p>The goal of the algorithm is to design an algorithm that achieves a sublinear regret, meaning $Regret(\mathcal{F}) = o(T)$. Note that the goal of the adversary is to maximize the regret.</p>
+
+<p>Here are two caveats. We assume an oracle that can solve the offline problem and an ability to sample from $\mathcal{D}$. More formally, $Oracle(x_{1:t}, q_{1:t})$ outputs $\min_{f \in F} \sum_{t=1}^T \lang f(x_t), q_t \rang$, and $Sampler(t)$ outputs $t$ i.i.d samples, $\lbrace x^1, \dots, x^t \rbrace \sim \mathcal{D}^{t}$.</p>
+
+<p>We want to design an algorithm that is efficient as well, meaning we want to the algorithm to run in polynomial time &ndash; this means polynomially many calls to to $Oracle$.</p>
+
+<p><br></p>
+
+<h2 id="2-let-s-dive-in">2. Let&rsquo;s Dive in</h2>
+
+<p>Here, I&rsquo;ll try to describe a high-level sketch of the techniques involved along with some proofs. Hopefully, I&rsquo;ll try be thorough here as much as possible so that the details of the technique will seem somewhat obvious. I&rsquo;ve copied a lot of the structures and details from <a href="https://haipeng-luo.net/courses/CSCI699/index.html">Haipeng Luo&rsquo;s lecture notes</a>.</p>
+
+<p><br></p>
+
+<h4 id="min-max-view-of-the-interaction">Min-Max View of the Interaction</h4>
+
+<p>If you have studied some form of game theory, the above interaction between the learner and the adversary might remind you of a 2 player zero-sum game: one player is trying to maximize some value, while the other player is trying to minimize the value. If there&rsquo;s <strong>only one round</strong>, we can formulate the above interaction in terms of a zero-sum game between the learner and the adversary: the learner&rsquo;s trying to minimize his regret, while the adversary is trying to maximize the regret. The expected min-max value of this game can be written as</p>
+
+<p>$$
+E_{x \sim \mathcal{D}} \min_{p \in \Delta{K}} \max_{q \in \mathcal{Z}}  [\langle p, q \rangle - \inf_{f \in \mathcal{F}} \langle f(x), q\rangle].
+$$</p>
+
+<p>Now, let&rsquo;s try to generalize this to $T$ rounds:
+$$
+E_{x_1 \sim \mathcal{D}} \min_{p_1 \in \Delta{K}} \max_{q_1 \in \mathcal{Z}} \dots E_{x_T \sim \mathcal{D}} \min_{p_T \in \Delta{K}} \max_{q_T \in \mathcal{Z}}  \left( \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right).
+$$</p>
+
+<p>Stare at this for a little bit, and think about what the learner&rsquo;s actually doing.</p>
+
+<p><img style="display: block; margin-left: auto;margin-right: auto; width: 30%;" src="../img/relax-and-randomize/stare.jpg"></p>
+
+<p>The learner has this optimistic-pessimistic (i.e. min-max) view of the future. In the very first round, the learner assumes that in the future rounds ($t=2, \dots, T$), the adversary will always provide the hardest scenario and that he will respond to those hardest scenarios in the most optimal ways. Given such min-max view of the future, the learner plays min max in the first round as well.</p>
+
+<p>$$
+E_{x_1 \sim \mathcal{D}} \min_{p_1 \in \Delta{K}} \max_{q_1 \in \mathcal{Z}} \left(\langle p_1, q_1 \rangle + E_{x_2 \sim \mathcal{D}} \min_{p_2 \in \Delta{K}} \max_{q_2 \in \mathcal{Z}} \dots E_{x_T \sim \mathcal{D}} \min_{p_T \in \Delta{K}} \max_{q_T \in \mathcal{Z}}  \sum_{t=2}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right).
+$$</p>
+
+<p>This has a nice recursive structure: given that the learner can play the future rounds in a min-max way, the learner plays a min-max strategy in the current round. Define $\phi(x_{1:t}, q_{1:t})$ to be the part of the min-max regret that can still be controlled given the past history $x_{1:t}, q_{1:t}$.</p>
+
+<p>$$
+\phi(x_{1:t}, q_{1:t}) = E_{x_{t+1} \sim \mathcal{D}} \min_{p_{t+1} \in \Delta{K}} \max_{q_{t+1} \in \mathcal{Z}} \dots E_{x_T \sim \mathcal{D}} \min_{p_T \in \Delta{K}} \max_{q_T \in \mathcal{Z}}  \left( \sum_{s=t+1}^T \langle p_s, q_s \rangle - \inf_{f \in \mathcal{F}} \sum_{s=1}^T \langle f(x_s), q_s\rangle \right).
+$$</p>
+
+<p>Note that</p>
+
+<p>$$
+\phi(x_{1:t}, q_{1:t}) = E_{x_{t+1} \sim \mathcal{D}} \min_{p_{t+1} \in \Delta{K}} \max_{q_{t+1} \in \mathcal{Z}}\left( \underbrace{\langle p_{t+1}, q_{t+1} \rangle}_{\text{playing min max in current round}} + \underbrace{\phi(x_{1:t+1}, q_{1:t+1})}_{\text{min max view of the future}} \right).
+$$</p>
+
+<p>Once $(x_{1:T}, q_{1:T})$ is fixed, there&rsquo;s nothing the learner can do to change the regret. The base case hence corresponds to $$\phi(x_{1:T}, q_{1:T}) = - \inf_{f \in \mathcal{F}} \sum_{s=1}^T \langle f(x_s), q_s\rangle.$$</p>
+
+<p>Observe that $$\phi(\empty) = E_{x_1 \sim \mathcal{D}} \min_{p_1 \in \Delta{K}} \max_{q_1 \in \mathcal{Z}} \dots E_{x_T \sim \mathcal{D}} \min_{p_T \in \Delta{K}} \max_{q_T \in \mathcal{Z}}  \left( \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right).$$</p>
+
+<p><br></p>
+
+<h4 id="upperbounding-the-min-max">Upperbounding the min-max</h4>
+
+<p>We have a mathematical object $\phi$ that we can analyze to study how much regret the learner can guarantee himself over $T$ rounds. In fact, given $x_{1:t+1}$ (contexts up to round $t+1$) and $q_{1:t}$ (the adversary&rsquo;s strategies up to round $t$), if the learner can exactly calculate $$p_{t+1} = \argmin_{p \in \Delta{K}} \max_{q_{t+1} \in \mathcal{Z}} \langle p, q_{t+1} \rangle + \phi(x_{1:t+1}, q_{1:t+1}),$$ the learner can guarantee himself expected regret of $\phi(\empty)$ for any adversary strategies $q_{1:T}$.</p>
+
+<p>$$
+\begin{aligned}
+&amp;E_{x_{1:T}} \left[ Regret(\mathcal{F}) \right]\nl
+&amp;=E_{x_{1:T}} \left[ \sum_{t=1}^T \lang p_t, q_t\rang - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \lang f(x_t), q_t \rang \right] \nl
+&amp;= E_{x_{1:T}} \left[  \sum_{t=1}^T \lang p_t, q_t\rang + \phi(x_{1:T}, q_{1:T}) \right]  \nl
+&amp;\le E_{x_{1:T}} \left[  \sum_{t=1}^{T-1} \lang p_t, q_t\rang + \phi(x_{1:T-1}, q_{1:T-1}) \right]  \nl
+&amp;\le \dots \nl
+&amp;\le \phi(\empty) \nl
+\end{aligned}
+$$</p>
+
+<p>Unfortunately, it&rsquo;s actually hard to compute $\phi$ exactly. So, we will instead try to come up with a &lsquo;relaxation&rsquo; of $\phi$ that is easy to deal with but still gives an upper bound on the regret. We will denote this upper bound by $Rel$. Using the recursive nature of this game, one can interpret this $Rel(x_{1:t}, q_{1:t})$ as an &lsquo;upperbound&rsquo; on the amount of regret that the adversary can charge given the history $x_{1:t}, q_{1:t}$. Therefore, we want the following to hold true.</p>
+
+<p>For every round $x_{1:t}$ and $q_{1:t}$,
+$$
+Rel(x_{1:t}, q_{1:t}) \ge E_{x_{t+1} \sim \mathcal{D}} \min_{p_{t+1} \in \Delta{K}} \max_{q_{t+1} \in \mathcal{Z}}\left( \langle p_{t+1}, q_{t+1} \rangle + Rel(x_{1:t+1}, q_{1:t+1}) \right).
+$$</p>
+
+<p>Also, the base case becomes:
+$$Rel(x_{1:T}, q_{1:T}) \ge - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle.$$</p>
+
+<p>Therefore, if we can come up with some form of relaxation $Rel$ that we can calculate, $Rel(\empty)$ serves as the total regret.</p>
+
+<p><br></p>
+
+<h2 id="relaxation">Relaxation</h2>
+
+<p>If you want to skip the details as to how we derive the relaxation, feel free to skip to the end of this section.</p>
+
+<p>Now, we&rsquo;ll borrow the idea of how the Rademacher complexity of the hypothesis class (i.e. how well the hypothesis class can fit some random noise) bounds the generalization gap in the batch setting in order to design $Rel$. We will carefully move around some terms in $\phi$, which will make the design of $Rel$ more intuitively easier to understand. For more reference, you can check out these papers: <a href="https://arxiv.org/abs/0903.5328">A Stochastic View of Optimal Regret through Minimax Duality
+</a>, <a href="http://www.mit.edu/~rakhlin/papers/emp_proc_dep_revised.pdf">Sequential complexities and uniform laws of large
+numbers</a>, and <a href="http://jmlr.org/papers/volume16/rakhlin15a/rakhlin15a.pdf">Online Learning via Sequential Complexities</a>.</p>
+
+<p>Moving around the terms will involve three four steps:</p>
+
+<ol>
+<li>Linearizing the loss in terms of the adversary&rsquo;s strategy $q$</li>
+<li>Applying <a href="https://en.wikipedia.org/wiki/Sion%27s_minimax_theorem">Sion&rsquo;s minimax theorem</a></li>
+<li>&lsquo;Symmetrizing&rsquo; the difference</li>
+<li>Introducing Rademacher variables</li>
+</ol>
+
+<h5 id="1-linearization">(1) Linearization</h5>
+
+<p>Remember that
+$$
+\begin{aligned}
+\phi(\empty) &amp;= E_{x_1 \sim \mathcal{D}} \min_{p_1 \in \Delta{K}} \max_{q_1 \in \mathcal{Z}} \dots E_{x_T \sim \mathcal{D}} \min_{p_T \in \Delta{K}} \max_{q_T \in \mathcal{Z}}  \left( \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right).
+\end{aligned}
+$$</p>
+
+<p>Conditioning on $x_{1:T-1}, p_{1:T-1}, q_{1:T-1}$, let&rsquo;s just focus on the last round:</p>
+
+<p>$$
+\begin{aligned}
+&amp;E_{x_T \sim \mathcal{D}} \left[\min_{p_T \in \Delta{K}} \max_{q_T \in \mathcal{Z}}  \left( \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right)\right] \nl
+&amp;=E_{x_T \sim \mathcal{D}} \left[ \min_{p_T \in \Delta{K}} \max_{\ell_T \in \Delta(\mathcal{Z})} E_{q_T \sim \ell_T} \left[ \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right]\right] \nl
+\end{aligned}
+$$</p>
+
+<p>Notice now how $E_{q_T \sim \ell_T} \left[ \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right]$ is linear in terms of $p_T$ and $\ell_T$.</p>
+
+<p><br></p>
+
+<h5 id="2-sion-s-minimax-theorem">(2) Sion&rsquo;s minimax theorem</h5>
+
+<p>If we have $M(\cdot, \cdot)$ that is convex in its first term and concave in the second term, then Sion&rsquo;s minmax theorem states that
+$$
+\min_{p \in \Delta(K)} \max_{\ell \in \Delta(\mathcal{Z})} M(p, \ell) = \max_{\ell \in \Delta(\mathcal{Z})} \min_{p \in \Delta(K)} M(p, \ell)
+$$</p>
+
+<p>Define $M(p, \ell) = E_{q_T \sim \ell_T} \left[ \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right]$, and applying Sion&rsquo;s minimax theorem allows us to flip the position of min and max:
+$$
+\begin{aligned}
+=E_{x_{T} \sim \mathcal{D}} \left[ \max_{\ell_{T} \in \Delta(\mathcal{Z})} \min_{p_{T} \in \Delta{K}}  E_{q_T \sim \ell_T} \left[ \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right]\right].
+\end{aligned}
+$$</p>
+
+<p>Plugging this back in to $\phi(\empty)$, we have
+$$
+\phi(\empty) = E_{x_1 \sim \mathcal{D}} \min_{p_1 \in \Delta{K}} \max_{q_1 \in \mathcal{Z}} \dots E_{x_T \sim \mathcal{D}} \min_{p_{T-1} \in \Delta{K}} \max_{q_{T-1} \in \mathcal{Z}}  \left( E_{x_{T} \sim \mathcal{D}} \left[ \max_{\ell_{T} \in \Delta(\mathcal{Z})} \min_{p_{T} \in \Delta{K}}  E_{q_T \sim \ell_T} \left[ \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right]\right] \right)
+$$</p>
+
+<p>To simplify the notation, we will use $\Vert \cdot \Vert_{t=1}^T$ to denote a series of operators. And we&rsquo;ll repeat the above process over all rounds.
+$$
+\begin{aligned}
+&amp;\phi(\empty) \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \min_{p_{t} \in \Delta{K}} \max_{q_{t} \in \mathcal{Z}} \Bigg\Vert_{t=1}^{T-1} \left( E_{x_{T} \sim \mathcal{D}} \left[ \max_{\ell_{T} \in \Delta(\mathcal{Z})} \min_{p_{T} \in \Delta{K}}  E_{q_T \sim \ell_T} \left[ \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right]\right] \right) \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \min_{p_{t} \in \Delta{K}} \max_{q_{t} \in \mathcal{Z}} \Bigg\Vert_{t=1}^{T-1} \left( \sum_{t=1}^{T-1} \langle p_t, q_t \rangle +
+E_{x_{T} \sim \mathcal{D}} \left[ \max_{\ell_{T} \in \Delta(\mathcal{Z})} \min_{p_{T} \in \Delta{K}}  E_{q_T \sim \ell_T} \left[ \langle p_T, q_T \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right]\right] \right) \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \min_{p_{t} \in \Delta{K}} \max_{q_{t} \in \mathcal{Z}} \Bigg\Vert_{t=1}^{T-1} \left( \sum_{t=1}^{T-1} \langle p_t, q_t \rangle +
+E_{x_{T} \sim \mathcal{D}} \left[ \max_{\ell_{T} \in \Delta(\mathcal{Z})} E_{q&rsquo;_T \sim \ell_{T}} \left[\min_{p_{T} \in \Delta{K}}  E_{q_T \sim \ell_T} \left[ \langle p_T, q_T \rangle \right] - \inf_{f \in \mathcal{F}} \sum_{t=1}^{T-1} \langle f(x_t), q_t\rangle + \langle f(x_T), q&rsquo;_T\rangle\right]\right] \right) \nl
+&amp;\dots \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \Delta(\mathcal{Z})} E_{q&rsquo;_t \sim \ell_{t}} \Bigg\Vert_{t=1}^{T} \left( \sum_{t=1}^{T} \min_{p_{t} \in \Delta{K}}  E_{q_t \sim \ell_t} \left[ \langle p_t, q_t \rangle \right] - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q&rsquo;_t\rangle \right).
+\end{aligned}
+$$</p>
+
+<p>The third equality comes from the linearity of expectation: we have separated the $\inf$ term by itself and then have taken its expectation over new randomness from $q&rsquo;_{T}$.</p>
+
+<p><br></p>
+
+<h5 id="3-symmetrization">(3) Symmetrization</h5>
+
+<p>By pulling out the $f$ in $\sup$, we can &lsquo;symmetrize&rsquo; the difference
+$$
+\begin{aligned}
+\phi(\empty) &amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \Delta(\mathcal{Z})} E_{q&rsquo;_t \sim \ell_{t}} \Bigg\Vert_{t=1}^{T} \left( \sum_{t=1}^{T} \min_{p_{t} \in \Delta{K}}  E_{q_t \sim \ell_t} \left[ \langle p_t, q_t \rangle \right] - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q&rsquo;_t\rangle \right) \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \Delta(\mathcal{Z})} E_{q&rsquo;_t \sim \ell_{t}} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T} \min_{p_{t} \in \Delta{K}}  E_{q_t \sim \ell_t} \left[ \langle p_t, q_t \rangle \right] -  \langle f(x_t), q&rsquo;_t\rangle \right) \nl
+&amp;\le \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \Delta(\mathcal{Z})} E_{q&rsquo;_t \sim \ell_{t}} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_{t}), q&rsquo;_t\rangle \right)
+\end{aligned}
+$$</p>
+
+<p><br></p>
+
+<h5 id="4-rademacher-random-variables">(4) Rademacher random variables</h5>
+
+<p>Once again, conditioning on $x_{1:T-1}, p_{1:T-1}, q_{1:T-1}$, let&rsquo;s just focus on the last round&rsquo;s inner term:
+$$
+\begin{aligned}
+&amp;\sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle \right) \nl
+&amp;= \sup_{f \in \mathcal{F}} \left( \sum_{t=1}^{T-1}  E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle + \left(   E_{q_T \sim \ell_T} \left[ \langle f(x_T), q_T \rangle \right] - \langle f(x_T), q&rsquo;_T\rangle \right) \right) \nl
+&amp;\le E_{q_T \sim \ell_T} \sup_{f \in \mathcal{F}} \left( \sum_{t=1}^{T-1}  E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle + \left(    \left[ \langle f(x_T), q_T \rangle \right] - \langle f(x_T), q&rsquo;_T\rangle \right) \right) \nl
+\end{aligned}
+$$</p>
+
+<p>Notice how we have turned the last term into a &lsquo;symmetric&rsquo; difference between $q_T$ and $q&rsquo;_T$. We&rsquo;ll introduce a Rademacher random variable $\epsilon_T$ (i.e. with probability $\frac{1}{2}$ , it&rsquo;s $+1$ and otherwise $-1$) for this last term. Peeling off the last term $E_{x_T \sim \mathcal{D}} \max_{\ell_{T} \in \Delta(\mathcal{Z})} E_{q&rsquo;_T \sim \ell_{T}}$ from $\Vert \cdot \Vert_{t=1}^T$ (just to bring in the expectation over $q&rsquo;_T$), we have</p>
+
+<p>$$
+\begin{aligned}
+&amp;E_{x_T \sim \mathcal{D}} \max_{\ell_{T} \in \Delta(\mathcal{Z})} E_{\substack{q&rsquo;_T \sim \ell_{T}, \ q_T \sim \ell_T }} \sup_{f \in \mathcal{F}} \left( \sum_{t=1}^{T-1} \left( E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle \right) + \left(    \left[ \langle f(x_T), q_T \rangle \right] - \langle f(x_T), q&rsquo;_T\rangle \right) \right) \nl
+&amp;= E_{x_T \sim \mathcal{D}} \max_{\ell_{T} \in \Delta(\mathcal{Z})} E_{q&rsquo;_T \sim \ell_{T}, q_T \sim \ell_T, \epsilon_T} \sup_{f \in \mathcal{F}} \left( \sum_{t=1}^{T-1} \left( E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle \right) + \epsilon_T \cdot \left(    \left[ \langle f(x_T), q_T \rangle \right] - \langle f(x_T), q&rsquo;_T\rangle \right) \right) \nl
+&amp;\le E_{x_T \sim \mathcal{D}} \max_{\ell_{T} \in \Delta(\mathcal{Z})} E_{q&rsquo;_T \sim \ell_{T}, q_T \sim \ell_T, \epsilon_T}  \sup_{f \in \mathcal{F}} \left( \frac{1}{2}\sum_{t=1}^{T-1} \left( E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle \right) + \epsilon_T \cdot \left(    \left[ \langle f(x_T), q_T \rangle \right] \right) \right) \nl
+&amp;+ \sup_{f \in \mathcal{F}} \left( \frac{1}{2} \sum_{t=1}^{T-1} \left( E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle \right) - \epsilon_T \cdot \left( \langle f(x_T), q&rsquo;_T\rangle \right) \right) \nl
+&amp;= E_{x_T \sim \mathcal{D}} \max_{\ell_{T} \in \Delta(\mathcal{Z})} E_{q_T \sim \ell_T, \epsilon_T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T-1} \left( E_{q_t \sim \ell_t} \left[ \langle f(x_t), q_t \rangle \right] - \langle f(x_t), q&rsquo;_t\rangle \right) + 2\epsilon_T \cdot \left( \langle f(x_T), q_T\rangle \right) \right)
+\end{aligned}
+$$</p>
+
+<p>The first inequality follows because maximizing terms individually cannot result in a smaller value than maximizing all the terms together: $\sup \sum_{t=1}^{T-1} \text{blah} + \epsilon ( a - b) \le \left(\sup \frac{1}{2} \sum_{t=1}^{T-1} \text{blah} + \epsilon a \right)+ \left(\sup \frac{1}{2} \sum_{t=1}^{T-1} \text{blah} - \epsilon b\right)$.</p>
+
+<p>Repeating this above process yields
+$$
+\begin{aligned}
+\phi(\empty) \le \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \Delta(\mathcal{Z})} E_{q_t \sim \ell_{t}, \epsilon_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2\epsilon_t \cdot \left( \langle f(x_t), q_t\rangle \right) \right).
+\end{aligned}
+$$</p>
+
+<p>The above value is called the &lsquo;sequential Rademacher complexity&rsquo;, and there has been extensive papers written about it: <a href="http://jmlr.org/papers/volume16/rakhlin15a/rakhlin15a.pdf">Online Learning via Sequential Complexities</a>, <a href="https://link.springer.com/article/10.1007/s00440-013-0545-5">Sequential complexities and uniform martingale laws of large numbers</a>, &hellip; .</p>
+
+<p>In fact, we can actually simplify the above value even more:
+$$
+\phi(\empty) \le \Bigg\Vert E_{x_t \sim \mathcal{D}} E_{\bar{\epsilon}_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2 \left( \langle f(x_t), \bar{\epsilon}_t\rangle \right) \right),
+$$
+where $\bar{\epsilon}_t$ is a vector of length $K$ where each coordinate is an independent Rademacher random variable.
+<details>
+    <summary>Proof: (click here)</summary></p>
+
+<p>$$
+\begin{aligned}
+\phi(\empty) &amp;\le \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \Delta(\mathcal{Z})} E_{q_t \sim \ell_{t}, \epsilon_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2\epsilon_t \cdot \left( \langle f(x_t), q_t\rangle \right) \right) \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \mathcal{Z} } E_{\epsilon_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2\epsilon_t \cdot \left( \langle f(x_t), \ell_t\rangle \right) \right) \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} \max_{\ell_{t} \in \{0, e_1, \dots, e_K\} } E_{\epsilon_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2\epsilon_t \cdot \left( \langle f(x_t), \ell_t\rangle \right) \right)
+\end{aligned}
+$$</p>
+
+<p>The last step follows because the maximum of a convex function happens at the boundary.</p>
+
+<p>Now, assume for now that for any $t \in [T]$, $\ell_t = e_i$ for some $i \in [K]$. Construct a random vector $\ell&rsquo;_t$ where the $i$th coordinate is 1 and all the other coordinates are independent Rademacher random variables.
+$$
+\begin{aligned}
+&amp; \Bigg\Vert E_{x_t \sim \mathcal{D}}  E_{\epsilon_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2\epsilon_t \cdot \left( \langle f(x_t), \ell_t\rangle\right) \right) \nl
+&amp;= \Bigg\Vert E_{x_t \sim \mathcal{D}} E_{\epsilon_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2\epsilon_t \cdot \left(E_{\ell_t \sim \ell&rsquo;_t}[ \langle f(x_t), \ell _t\rangle\right) \right) \nl
+&amp;\le \Bigg\Vert E_{x_t \sim \mathcal{D}} E_{\ell_t \sim \ell&rsquo;_t, \epsilon_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2\epsilon_t \cdot \left([ \langle f(x_t), \ell _t\rangle\right) \right)
+\end{aligned}
+$$</p>
+
+<p>Now, note that $\epsilon_t \cdot \left([ \langle f(x_t), \ell _t\rangle\right)$ is exactly equivalent to multiplying $f(x_t)$ by a vector where each coordinate is a Rademacher random variable. Denote such a random vector by $\bar{\epsilon}_t$.
+$$
+\begin{aligned}
+= \Bigg\Vert E_{x_t \sim \mathcal{D}} E_{\bar{\epsilon}_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2 \langle f(x_t), \bar{\epsilon}_t \rangle \right)
+\end{aligned}
+$$</p>
+
+<p>Also, even when $\ell_{t&rsquo;} = 0$ for some $t&rsquo;$, the above upperbound holds.
+$$
+\begin{aligned}
+&amp;E_{\bar{\epsilon}_{t&rsquo;}} \left[ \sup_{f \in \mathcal{F}} \left(\sum_{t=1}^{T}  2 \langle f(x_t), \bar{\epsilon}_t \rangle\right) \right] \nl
+&amp;\ge  \sup_{f \in \mathcal{F}} \left(\sum_{t=1}^{T}  2 E_{\bar{\epsilon}_{t&rsquo;}} \left[ \langle f(x_t), \bar{\epsilon}_t \rangle \right] \right)  \nl
+&amp;\ge  \sup_{f \in \mathcal{F}} \left(\sum_{t \in [T], t \neq t&rsquo;}  2  \langle f(x_t), \bar{\epsilon}_t \rangle \right)  \nl
+\end{aligned}
+$$</p>
+
+<p>$\square$
+<br>
+</details></p>
+
+<h1 id="recap-time-to-take-a-deep-breath">Recap: Time to Take a Deep Breath</h1>
+
+<figure style="display: block; margin-left: auto;margin-right: auto; width: 30%;">
+    <img src="../img/relax-and-randomize/deep-breath.jpg">
+</figure>
+
+<p>We have gone through lots of mechanical details so far, so let&rsquo;s think about what our original goal was.</p>
+
+<ol>
+<li><p>We have written down the min-max formulation of the learner and the adversary.
+$$
+\phi(\empty) = E_{x_1 \sim \mathcal{D}} \min_{p_1 \in \Delta{K}} \max_{q_1 \in \mathcal{Z}} \dots E_{x_T \sim \mathcal{D}} \min_{p_T \in \Delta{K}} \max_{q_T \in \mathcal{Z}}  \left( \sum_{t=1}^T \langle p_t, q_t \rangle - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle\right).
+$$</p></li>
+
+<li><p>Because calculating the exact min-max is hard, we tried to simply upperbound the min-max.
+$$
+Rel(x_{1:t}, q_{1:t}) \ge E_{x_{t+1} \sim \mathcal{D}} \min_{p_{t+1} \in \Delta{K}} \max_{q_{t+1} \in \mathcal{Z}}\left( \langle p_{t+1}, q_{t+1} \rangle + Rel(x_{1:t+1}, q_{1:t+1}) \right).
+$$</p></li>
+
+<li><p>After rearranging some terms, we have shown that the min-max value is upper-bounded by the sequential Rademacher complexity.
+$$
+\phi(\empty) \le \Bigg\Vert E_{x_t \sim \mathcal{D}} E_{\bar{\epsilon}_t} \Bigg\Vert_{t=1}^{T} \sup_{f \in \mathcal{F}} \left(  \sum_{t=1}^{T}  2 \left( \langle f(x_t), \bar{\epsilon}_t\rangle \right) \right),
+$$</p></li>
+</ol>
+
+<p>One interpretation of the sequential rademacher complexity is that the worst case regret can be upper-bounded by imagining a scenario where the future losses are totally random (i.e. each coordinate is either +1 or -1 with probability <sup>1</sup>&frasl;<sub>2</sub>).</p>
+
+<p>This interpretation of randomizing the future in order to be future-proof against the worst case scenario motivates us to define $Rel$ in the following manner. For all future loss vectors, simply assume that they are Rademacher random variables.</p>
+
+<p>$$
+Rel(x_{1:t}, q_{1:t}) = E_{x_{t+1: T}, \bar{\epsilon}_{t+1: T}}\left[ \sup_{f \in \mathcal{F}} \left(\sum_{s=t+1}^T 2  \langle f(x_t), \bar{\epsilon}_t \rangle - \sum_{s=1}^t \langle f(x_s), q_s \rangle\right)  \right].
+$$</p>
+
+<p>Then, the most natural way to compute the learner&rsquo;s strategy $p^t$ is to set
+$$
+p_{t} = \argmin_{p \in \Delta{K}} \max_{q_{t} \in \mathcal{Z}} \langle p, q_{t} \rangle + Rel(x_{1:t}, q_{1:t}).
+$$
+However, although we have tamed $\phi$ to $Rel$, it&rsquo;s still hard to compute $Rel$. One way to get around is by sampling Rademacher random variables initially and then calculating what the future regret will look like according to the sampled Rademacher random variables. Then, we can just take an expectation over the randomness of these Rademacher random variables. In other words,
+$$
+p_t = E_{x_{t+1:T}, \bar{\epsilon}_{t+1:T}}\left[\argmin_{p \in \Delta{K}} \max_{q_{t} \in \mathcal{Z}} \langle p, q_{t} \rangle + \phi(x_{1:T}, (q_{1:t}, 2\bar{\epsilon}_{t+1:T})) \right].
+$$
+Note that we have $\phi(x_{1:T}, (q_{1:t}, \bar{\epsilon}_{t+1:T}))$ corresponds to a base case (i.e. no recursion needed), so it&rsquo;s actually easy to calculate. More specifically, one can leverage $Oracle$ and $Sampler$ to efficiently calculate $p_t$ &ndash; see water-filling argument in <a href="https://haipeng-luo.net/courses/CSCI699/lecture22.pdf">Haipeng Luo&rsquo;s Lecture Notes</a> or the proof of Lemma 3 in the <a href="https://arxiv.org/pdf/1602.02196.pdf">original paper</a>.</p>
+
+<p>In fact, it can be easily shown that this $Rel$ along with the above $p_t$ actually satisfy the properties that we originally wanted &ndash; that is, for every round $x_{1:t}$ and $q_{1:t}$,
+$$
+Rel(x_{1:t}, q_{1:t}) \ge E_{x_{t+1} \sim \mathcal{D}} \min_{p_{t+1} \in \Delta{K}} \max_{q_{t+1} \in \mathcal{Z}}\left( \langle p_{t+1}, q_{t+1} \rangle + Rel(x_{1:t+1}, q_{1:t+1}) \right).
+$$
+and
+$$Rel(x_{1:T}, q_{1:T}) \ge - \inf_{f \in \mathcal{F}} \sum_{t=1}^T \langle f(x_t), q_t\rangle.$$</p>
+
+<p>Finally, one can adapt Massart&rsquo;s Lemma (that shows that the original Rademacher complexity can&rsquo;t be too big in terms of the size of the hypothesis class) to show that the sequential Rademacher complexity is at most $\sqrt{2T \log{\vert \mathcal{F} \vert}}$: see <a href="https://www.cs.cornell.edu/~sridharan/OLpart1.pdf">this paper</a>. Therefore, the above &ldquo;randomizing the future&rdquo; approach achieves the following regret in expectation:
+$$
+Regret(\mathcal{F}) \le 2\sqrt{2T \log{\vert \mathcal{F} \vert}}.
+$$</p>
+
+<h4 id="related-works">Related Works</h4>
+
+<p>Here&rsquo;s another work that is similar in spirit: <a href="https://arxiv.org/pdf/1602.02454.pdf">Efficient Algorithms for Adversarial Contextual Learning</a>. They also consider imaging the future loss vectors are formed by sampling from a Laplace distribution in each coordinate. They prove stability of the learner&rsquo;s policy over the rounds and use the follow-the-perturbed-leader style proof to prove a no-regret guarantee.</p>
+
+    </article>
+  </div>
+
+  
+  
+  
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'UA-123514321-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+
+  
+
+  
+</body>
+
+</html>

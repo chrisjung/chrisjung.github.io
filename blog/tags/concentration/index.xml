@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>concentration on Chris Jung</title>
+    <link>https://www.cis.upenn.edu/~chrjung/blog/tags/concentration/</link>
+    <description>Recent content in concentration on Chris Jung</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Oct 2019 22:31:26 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.cis.upenn.edu/~chrjung/blog/tags/concentration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Monitor Argument: 2. Proof Sketch</title>
+      <link>https://www.cis.upenn.edu/~chrjung/blog/monitor-argument-proof/</link>
+      <pubDate>Tue, 15 Oct 2019 22:31:26 -0400</pubDate>
+      
+      <guid>https://www.cis.upenn.edu/~chrjung/blog/monitor-argument-proof/</guid>
+      <description>In the previous post, we went over three different settings and saw how they can all be understood under one unifying framework. In this post, we will first go over the high level proof sketch, and then we will prove all the lemmas that are not specific to the setting.
+
+Proof Sketch Here&amp;rsquo;s the statement that we want to prove: $$ \Pr_{S \sim \mathcal{P}^n, q = M(S)}\left( |q(S) - E_{S \sim \mathcal{P}^n} \left[ q(S) \right] | \ge \alpha \right) \le \beta.</description>
+    </item>
+    
+    <item>
+      <title>The Monitor Argument: 1. Overview &amp; Applications</title>
+      <link>https://www.cis.upenn.edu/~chrjung/blog/monitor-argument/</link>
+      <pubDate>Tue, 08 Oct 2019 22:31:41 -0400</pubDate>
+      
+      <guid>https://www.cis.upenn.edu/~chrjung/blog/monitor-argument/</guid>
+      <description>In this post, I want to go over the Monitor argument introduced by Bassily et al.; it was originally developed in order to show strong generalization bounds for differentially private algorithms even in the face of adaptivity.
+I first learned about the Monitor argument when I took Aaron&amp;rsquo;s Adaptive Data Analysis class back in Fall 2017 but have forgotten about it since then. However, when I recently read Steinke et al.</description>
+    </item>
+    
+  </channel>
+</rss>
