@@ -6,10 +6,6 @@ $(document).ready(function() {
             scrollTarget: link.hash
         });
     });
-
-    $('.blog').on('click', function(){
-        window.location.href = './blog/index.html';
-    });
 });
 
 
