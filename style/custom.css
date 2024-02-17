@@ -91,3 +91,10 @@ body {
 }
 
 
+.scholar-icon{
+    transition: .2s;
+}
+
+.scholar-icon i:hover{
+  transform: scale(1.3);
+}
